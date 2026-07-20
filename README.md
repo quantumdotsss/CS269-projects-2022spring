@@ -1,40 +1,154 @@
-# UCLA CS269 Spring2022 human AI Course Project
+# Self-Learning Car: Simulation, Control, and Sensor Fusion
 
-Project page: https://ucladeepvision.github.io/CS269-projects-2022spring/
+![ROS](https://img.shields.io/badge/ROS-robotics-22314E)
+![F1TENTH](https://img.shields.io/badge/platform-F1TENTH-E2231A)
+![CARLA](https://img.shields.io/badge/simulator-CARLA-00A6D6)
+![LiDAR](https://img.shields.io/badge/perception-2D%20LiDAR-6C5CE7)
+![Control](https://img.shields.io/badge/control-PID%20%2B%20evolutionary%20learning-2E8B57)
 
-## Instruction for running this site locally
+An autonomous-driving course project that connects three layers of robotics
+work: learning a driving policy in simulation, testing classical control, and
+bringing sensing and control onto a 1/10-scale F1TENTH vehicle.
 
-1. Follow the first 2 steps in [pull-request-instruction](pull-request-instruction.md)
+This was a team project for **UCLA CS269: Human-Centered AI, Spring 2022**, by
+**Yunbo Wang and Ouyang Boya**. The original report describes a genetic
+algorithm that evolves a small neural controller from simulated range-sensor
+inputs. The additional videos document PID control, CARLA LiDAR/camera
+visualization, and physical vehicle assembly testing.
 
-2. Installing Ruby with version 3.0.0 if you are using a Mac, and ruby 2.7 should work for Linux, check https://www.ruby-lang.org/en/documentation/installation/ for instruction.
+**[Read the original UCLA project report](https://ucladeepvision.github.io/CS269-projects-2022spring/2022/04/24/team20-.Self-Learning-Car.html)**
+· **[Watch the three video demos](demos/README.md)**
 
-3. Installing Bundler and jekyll with
-```
-gem install --user-install bundler jekyll
-bundler install
-bundle add webrick
-```
+<p align="center">
+  <img src="assets/images/team20/Picture1.png" width="720" alt="F1TENTH autonomous vehicle platform with 2D LiDAR and onboard computing">
+</p>
 
-4. Run your site with
-```
-bundle exec jekyll serve
-```
-You should see an address pop on the terminal (http://127.0.0.1:4000/CS269-projects-2022spring
-/ by default), go to this address with your browser.
+## Project question
 
-## Working on the project
+Can a compact neural policy learn steering and throttle directly from simulated
+range measurements, and what changes when that control stack moves from a
+simulator to a physical vehicle?
 
-1. Create a folder with your team id under ```./assets/images/your-teamid```, you will use this folder to store all the images in your project.
+The project used a ROS-based F1TENTH simulator on Ubuntu 18.04. Five
+front-facing distance sensors covered approximately 90 degrees with a maximum
+range of 10 simulator units. Their readings fed a fully connected neural
+network:
 
-2. Copy the template at ```./_posts/2022-04-10-team00-instruction-to-post.md``` and rename it with format "year-month-date-yourteamid-projectshortname.md" under ```./_posts/```, for example, **2022-04-10-team01-object-detection.md**
+~~~text
+5 range measurements
+        |
+        v
+Input layer: 5 neurons
+        |
+        v
+Hidden layers: 4 -> 3 neurons
+        |
+        v
+Outputs: steering + engine force
+~~~
 
-3. Check out the [sample posts](https://ucladeepvision.github.io/CS269-projects-2022spring) we provide and the [source code](https://raw.githubusercontent.com/UCLAdeepvision/CS269-projects-2022spring/main/_posts/2022-04-10-team00-instruction-to-post.md) as well as [basic Markdown syntax](https://www.markdownguide.org/basic-syntax/).
+Instead of training the weights with gradient descent, the project used a
+genetic algorithm:
 
-4. Start your work in your .md file. You may only edit the .md file you just copied and renamed, and add images to ```./assets/images/your-teamid```. Please do **NOT** change any other files in this repo.
+1. Spawn a population of randomly initialized cars.
+2. Evaluate each controller by how well it navigates the track.
+3. Select the strongest controllers.
+4. Recombine and mutate their weights to create the next generation.
+5. Repeat until the simulated policy can complete the course.
 
-Once you save the .md file, jekyll will synchronize the site and you can check the changes on browser.
+## System view
 
-## Submission
-We will use git pull request to manage submissions.
+| Track | Input | Method | Output demonstrated |
+|---|---|---|---|
+| Learned driving policy | Five simulated range readings | Genetic algorithm evolving a 5-4-3-2 feed-forward network | Steering and engine commands in the F1TENTH simulator |
+| Classical control | Simulated vehicle state and track geometry | PID feedback control | Stable path-following behavior |
+| Sensor integration | CARLA camera and LiDAR streams | Multi-sensor visualization and synchronization | Overhead, driver-view, and point-cloud displays |
+| Hardware bring-up | Physical 1/10-scale platform, 2D LiDAR, onboard compute, and controller | Assembly and bench integration testing | Bench-level assembly and actuation demonstration |
 
-Once you've done, follow steps 3 and 4 in [pull-request-instruction](pull-request-instruction.md) to make a pull request BEFORE the deadline. Please make sure not to modify any file except your .md file and your images folder. We will merge the request after all submissions are received, and you should able to check your work in the project page on next week of each deadline.
+These are complementary demonstrations. The CARLA and PID videos are supporting
+engineering experiments; they are not presented as results of the genetic
+algorithm described in the course report.
+
+## Video demos
+
+The GIF previews play automatically. The PID preview is eight seconds at 1.5×
+speed; the other previews are six-second loops. Click a preview to open the
+complete GitHub-hosted video.
+
+### PID control in the F1TENTH simulator
+
+[![PID control demo](assets/images/team20/demos/f1tenth-pid-control.gif)](demos/f1tenth-pid-control.mp4?raw=1)
+
+The vehicle follows a narrow simulated course while the visualization exposes
+the vehicle pose and surrounding range information.
+
+### CARLA LiDAR and camera visualization
+
+[![CARLA sensor fusion demo](assets/images/team20/demos/carla-lidar-fusion.gif)](demos/carla-lidar-fusion.webm?raw=1)
+
+The CARLA recording shows combined overhead and driver-facing camera views
+alongside two LiDAR point-cloud displays.
+
+### Physical F1TENTH assembly test
+
+[![F1TENTH assembly demo](assets/images/team20/demos/f1tenth-car-assembly.gif)](demos/f1tenth-car-assembly.mp4?raw=1)
+
+This bench test shows the assembled platform, including the chassis, steering
+and drive hardware, onboard electronics, and 2D LiDAR.
+
+For duration, resolution, codec, and original filename details, see the
+**[video gallery](demos/README.md)**.
+
+## Result and engineering lesson
+
+The evolved controller worked well in simulation: after repeated
+selection/recombination/mutation cycles, the simulated car could navigate the
+course. Transferring the result to the physical platform was less successful.
+The course report identifies a timing mismatch between the controller and the
+2D LiDAR as the primary failure mode, causing delayed observations and crashes.
+
+That gap is the central engineering lesson of the project:
+
+- simulation validates an algorithm under controlled timing;
+- hardware introduces sensor latency, asynchronous clocks, actuation delay, and
+  safety constraints;
+- a successful policy therefore depends on systems integration as much as the
+  learning algorithm;
+- PID control provides a useful classical baseline against which a learned
+  controller can be compared.
+
+## What this project demonstrates
+
+- Understanding of evolutionary optimization for neural-network weights.
+- Ability to trace a control policy from sensor input to steering and throttle.
+- Experience with ROS-based F1TENTH simulation and physical platform bring-up.
+- Work with 2D LiDAR, camera streams, CARLA, and multi-sensor visualization.
+- Practical awareness of the simulation-to-real gap and sensor/control timing.
+- Clear separation between successful simulation results and incomplete
+  hardware transfer.
+
+## Repository map
+
+| Path | Purpose |
+|---|---|
+| [demos/](demos/README.md) | Three videos, playback links, and media metadata |
+| [assets/images/team20/](assets/images/team20/) | Original Team 20 figures and generated video preview images |
+| [_posts/2022-04-24-team20-.Self-Learning-Car.md](_posts/2022-04-24-team20-.Self-Learning-Car.md) | Local source for the original course report |
+| [docs/course-site-readme.md](docs/course-site-readme.md) | Original instructions for the UCLA course website |
+| [_posts/](_posts/) | Other CS269 team reports retained from the course-site fork |
+
+## Scope and provenance
+
+This repository is a portfolio-oriented fork of the UCLA CS269 Spring 2022
+project website. The top-level README highlights Team 20; reports and assets
+from other teams remain the work of their original authors.
+
+The original report is jointly authored by Yunbo Wang and Ouyang Boya. This
+repository is a documentation and demonstration archive: it does not include
+the full ROS workspace, simulator source, trained controller weights, or a
+turnkey reproduction environment.
+
+## Team
+
+**Yunbo Wang · Ouyang Boya**
+UCLA CS269: Human-Centered AI, Spring 2022
