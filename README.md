@@ -71,25 +71,25 @@ algorithm described in the course report.
 
 ## Video demos
 
-Click a preview to open the GitHub-hosted video.
+The six-second GIF previews play automatically. Click a preview to open the complete GitHub-hosted video.
 
 ### PID control in the F1TENTH simulator
 
-[![PID control demo](assets/images/team20/demos/f1tenth-pid-control.jpg)](demos/f1tenth-pid-control.mp4)
+[![PID control demo](assets/images/team20/demos/f1tenth-pid-control.gif)](demos/f1tenth-pid-control.mp4?raw=1)
 
 The vehicle follows a narrow simulated course while the visualization exposes
 the vehicle pose and surrounding range information.
 
 ### CARLA LiDAR and camera visualization
 
-[![CARLA sensor fusion demo](assets/images/team20/demos/carla-lidar-fusion.jpg)](demos/carla-lidar-fusion.webm)
+[![CARLA sensor fusion demo](assets/images/team20/demos/carla-lidar-fusion.gif)](demos/carla-lidar-fusion.webm?raw=1)
 
 The CARLA recording shows combined overhead and driver-facing camera views
 alongside two LiDAR point-cloud displays.
 
 ### Physical F1TENTH assembly test
 
-[![F1TENTH assembly demo](assets/images/team20/demos/f1tenth-car-assembly.jpg)](demos/f1tenth-car-assembly.mp4)
+[![F1TENTH assembly demo](assets/images/team20/demos/f1tenth-car-assembly.gif)](demos/f1tenth-car-assembly.mp4?raw=1)
 
 This bench test shows the assembled platform, including the chassis, steering
 and drive hardware, onboard electronics, and 2D LiDAR.

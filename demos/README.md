@@ -4,14 +4,14 @@ These recordings document three parts of the autonomous-driving workflow:
 classical control in simulation, CARLA sensor visualization, and physical
 F1TENTH platform bring-up.
 
-Click a preview image or the direct link below it to open the original
-GitHub-hosted recording.
+Each six-second GIF preview plays automatically. Click it or the direct link
+below to open or download the original GitHub-hosted recording.
 
 ## 1. F1TENTH PID control
 
-[![F1TENTH PID control](../assets/images/team20/demos/f1tenth-pid-control.jpg)](f1tenth-pid-control.mp4)
+[![F1TENTH PID control](../assets/images/team20/demos/f1tenth-pid-control.gif)](f1tenth-pid-control.mp4?raw=1)
 
-**[Open video](f1tenth-pid-control.mp4)**
+**[Open/download full video](f1tenth-pid-control.mp4?raw=1)**
 
 - Duration: 21.5 seconds
 - Resolution: 592 × 1296
@@ -21,9 +21,9 @@ GitHub-hosted recording.
 
 ## 2. CARLA LiDAR and camera visualization
 
-[![CARLA LiDAR fusion](../assets/images/team20/demos/carla-lidar-fusion.jpg)](carla-lidar-fusion.webm)
+[![CARLA LiDAR fusion](../assets/images/team20/demos/carla-lidar-fusion.gif)](carla-lidar-fusion.webm?raw=1)
 
-**[Open video](carla-lidar-fusion.webm)**
+**[Open/download full video](carla-lidar-fusion.webm?raw=1)**
 
 - Duration: 30.0 seconds
 - Resolution: 3440 × 1440
@@ -34,9 +34,9 @@ GitHub-hosted recording.
 
 ## 3. Physical F1TENTH assembly test
 
-[![F1TENTH car assembly](../assets/images/team20/demos/f1tenth-car-assembly.jpg)](f1tenth-car-assembly.mp4)
+[![F1TENTH car assembly](../assets/images/team20/demos/f1tenth-car-assembly.gif)](f1tenth-car-assembly.mp4?raw=1)
 
-**[Open video](f1tenth-car-assembly.mp4)**
+**[Open/download full video](f1tenth-car-assembly.mp4?raw=1)**
 
 - Duration: 17.7 seconds
 - Resolution: 1280 × 720
@@ -49,7 +49,7 @@ GitHub-hosted recording.
 
 - The recordings retain their original codecs and visual content; only the
   repository filenames were normalized.
-- Preview images are single frames extracted from the videos.
+- Animated previews are six-second GIF loops extracted from the videos.
 - The CARLA recording is a desktop capture and is best viewed at full
   resolution.
 - These files are demonstrations rather than a quantitative benchmark.
