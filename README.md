@@ -1,4 +1,4 @@
-# Self-Learning Car: Simulation, Control, and Sensor Fusion
+# F1TENTH Autonomous Driving Stack
 
 ![ROS](https://img.shields.io/badge/ROS-robotics-22314E)
 ![F1TENTH](https://img.shields.io/badge/platform-F1TENTH-E2231A)
@@ -6,9 +6,9 @@
 ![LiDAR](https://img.shields.io/badge/perception-2D%20LiDAR-6C5CE7)
 ![Control](https://img.shields.io/badge/control-PID%20%2B%20evolutionary%20learning-2E8B57)
 
-An autonomous-driving course project that connects three layers of robotics
-work: learning a driving policy in simulation, testing classical control, and
-bringing sensing and control onto a 1/10-scale F1TENTH vehicle.
+A robotics portfolio project spanning evolutionary neural control, PID path
+following, CARLA LiDAR/camera visualization, and sim-to-real integration on a
+1/10-scale F1TENTH autonomous vehicle.
 
 This was a team project for **UCLA CS269: Human-Centered AI, Spring 2022**, by
 **Yunbo Wang and Ouyang Boya**. The original report describes a genetic
