@@ -4,8 +4,9 @@ These recordings document three parts of the autonomous-driving workflow:
 classical control in simulation, CARLA sensor visualization, and physical
 F1TENTH platform bring-up.
 
-Each six-second GIF preview plays automatically. Click it or the direct link
-below to open or download the original GitHub-hosted recording.
+Each GIF preview plays automatically. The PID preview is eight seconds at 1.5×
+speed; the other two are six-second loops. Click it or the direct link below to
+open or download the original GitHub-hosted recording.
 
 ## 1. F1TENTH PID control
 
@@ -14,6 +15,7 @@ below to open or download the original GitHub-hosted recording.
 **[Open/download full video](f1tenth-pid-control.mp4?raw=1)**
 
 - Duration: 21.5 seconds
+- Preview: 8 seconds at 1.5× playback speed
 - Resolution: 592 × 1296
 - Video/audio: H.264 + AAC
 - Demonstrates: PID-based path following in the F1TENTH simulator
@@ -49,7 +51,7 @@ below to open or download the original GitHub-hosted recording.
 
 - The recordings retain their original codecs and visual content; only the
   repository filenames were normalized.
-- Animated previews are six-second GIF loops extracted from the videos.
+- Animated previews are short GIF loops extracted from the videos.
 - The CARLA recording is a desktop capture and is best viewed at full
   resolution.
 - These files are demonstrations rather than a quantitative benchmark.

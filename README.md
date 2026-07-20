@@ -71,7 +71,9 @@ algorithm described in the course report.
 
 ## Video demos
 
-The six-second GIF previews play automatically. Click a preview to open the complete GitHub-hosted video.
+The GIF previews play automatically. The PID preview is eight seconds at 1.5×
+speed; the other previews are six-second loops. Click a preview to open the
+complete GitHub-hosted video.
 
 ### PID control in the F1TENTH simulator
 
